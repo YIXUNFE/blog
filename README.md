@@ -8,6 +8,5 @@
 
 ## 文章目录：
 
-#1 MARKDOWN语法简析
-yixunfe/blog#1
+[#1 MARKDOWN语法简析](yixunfe/blog#1)
 
