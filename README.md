@@ -8,5 +8,5 @@
 
 ## 文章目录：
 
-[#1 MARKDOWN语法简析](YIXUNFE/blog#1)
+[#1 MARKDOWN语法简析](https://github.com/YIXUNFE/blog/issues/1)
 
