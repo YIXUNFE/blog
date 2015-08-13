@@ -12,7 +12,6 @@
   <body>
     <div class="l"></div>
     <form class="info">
-      <div id="die">点我触发死循环</div>
       <div><label><input type="checkbox" id="chk" />开启阻止默认事件</label></div>
       <div><label><input type="radio" name="v" value="0" checked="checked" />使用pageX/pageY</label></div>
       <div><label><input type="radio" name="v" value="1" />使用screenX/screenY</label></div>
@@ -65,10 +64,6 @@
         if (e.target.name === 'v') {
           type = document.querySelector('[type="radio"]:checked').value
         }
-      })
-      
-      document.getElementById('die').addEventListener('click', function () {
-        while (1) {}
       })
       
       function getXY (e) {
