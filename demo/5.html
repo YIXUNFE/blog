@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>测试多图上传</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  </head>
+  <body>
+    <div id="info">按住滑动页面</div>
+    <style>#info {margin: 30px auto; width: 100%; max-width: 640px;}</style>
+    <script>
+    'use strict'
+    ;(function () {
+      var showBox = document.getElementById('info'),
+        handle = {
+          handleEvent: function (e) {
+            switch (e.type) {
+              case 'touchstart':
+              case 'mousedown':
+                _start(e)
+                break
+              case 'touchmove':
+              case 'mousemove':
+                _move(e)
+                break
+              case 'touchend':
+              case 'mouseup':
+                _end(e)
+                break
+            }
+          }
+        }
+      document.addEventListener('touchstart', handle)
+      document.addEventListener('touchmove', handle)
+      document.addEventListener('touchend', handle)
+      document.addEventListener('mousedown', handle)
+      document.addEventListener('mousemove', handle)
+      document.addEventListener('mouseup', handle)
+      
+      function getXY (e) {
+        var obj = e.touches ? e.touches[0] : e
+        return {
+          x: obj.pageX,
+          y: obj.pageY
+        }
+      }
+      
+      var o = {},
+        d = {},
+        isTouched = false
+      function _start (e) {
+        o = getXY(e)
+        d = {
+          x: o.x,
+          y: o.y
+        }
+        isTouched = true
+      }
+      
+      function _move (e) {
+        if (!isTouched) {return}
+        var dx, dy
+        d = getXY(e)
+        dx = d.x - o.x
+        dy = d.y - o.y
+        update(dx, dy)
+      }
+      
+      function _end (e) {
+        var dx = d.x - o.x,
+          dy = d.y - o.y
+        update(dx, dy)
+        isTouched = false
+      }
+      
+      function update (x, y) {
+        var html = '<h2>滑动了</h2><br />x: ' + x + '<br />y:' + y
+        showBox.innerHTML = html
+      }
+      
+    }())
+    </script>
+  </body>
+</html>
