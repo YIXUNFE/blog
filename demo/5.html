@@ -12,15 +12,15 @@
   <body>
     <div class="l"></div>
     <form class="info">
-      <div><input type="checkbox" id="chk" />开启阻止默认事件</div>
-      <div><input type="radio" name="v" value="0" checked="checked" />使用pageX/pageY</div>
-      <div><input type="radio" name="v" value="1" />使用screenX/screenY</div>
-      <div><input type="radio" name="v" value="2" />使用clientX/clientY</div>
+      <div><label><input type="checkbox" id="chk" />开启阻止默认事件</label></div>
+      <div><label><input type="radio" name="v" value="0" checked="checked" />使用pageX/pageY</label></div>
+      <div><label><input type="radio" name="v" value="1" />使用screenX/screenY</label></div>
+      <div><label><input type="radio" name="v" value="2" />使用clientX/clientY</label></div>
       <div id="info">按住滑动页面</div>
     </form>
     <style>
     .l {height: 2000px}
-    .info {text-align: center; position: fixed; top: 10px; left: 10%; background: #000; color: #fff; width: 80%; max-width: 640px;}
+    .info {text-align: center; position: absolute; top: 10px; left: 10%; background: #000; color: #fff; width: 80%; max-width: 640px;}
     </style>
     <script>
     'use strict'
