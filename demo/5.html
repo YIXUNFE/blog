@@ -59,10 +59,11 @@
       document.addEventListener('mousemove', handle)
       document.addEventListener('mouseup', handle)
       chk.addEventListener('change', function () {isPrevent = this.checked})
-      ;[].map.call(document.querySelectorAll('[type="radio"]'), function (o) {
-        o.addEventListener('change', function () {
+      
+      document.addEventListener('change', function (e) {
+        if (e.target.name === 'v') {
           type = document.querySelector('[type="radio"]:checked').value
-        })
+        }
       })
       function getXY (e) {
         var obj = e.touches ? e.touches[0] : e
