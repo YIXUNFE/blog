@@ -42,6 +42,10 @@
               case 'mouseup':
                 _end(e)
                 break
+              case 'touchcancel':
+              case 'mousecancel':
+                _cancel(e)
+                break
             }
           }
         },
@@ -92,19 +96,26 @@
         d = getXY(e)
         dx = d.x - o.x
         dy = d.y - o.y
-        update(dx, dy)
+        update('move', dx, dy)
         if (isPrevent) {e.preventDefault()}
       }
       
       function _end (e) {
         var dx = d.x - o.x,
           dy = d.y - o.y
-        update(dx, dy)
+        update('end', dx, dy)
         isTouched = false
       }
       
-      function update (x, y) {
-        var html = '<h2>滑动了</h2><br />x: ' + x + '<br />y:' + y
+      function _cancel (e) {
+        var dx = d.x - o.x,
+          dy = d.y - o.y
+        update('cancel', dx, dy)
+        isTouched = false
+      }
+      
+      function update (text, x, y) {
+        var html = '<h2>' + text + '</h2><br />x: ' + x + '<br />y:' + y
         showBox.innerHTML = html
       }
       
