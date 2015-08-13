@@ -20,7 +20,7 @@
     </form>
     <style>
     .l {height: 2000px}
-    .info {text-align: center; position: absolute; top: 10px; left: 10%; background: #000; color: #fff; width: 80%; max-width: 640px;}
+    .info {text-align: center; fixed: absolute; top: 10px; left: 10%; background: #000; color: #fff; width: 80%; max-width: 640px;}
     </style>
     <script>
     'use strict'
@@ -100,7 +100,6 @@
           dy = d.y - o.y
         update(dx, dy)
         isTouched = false
-        e.preventDefault()
       }
       
       function update (x, y) {
