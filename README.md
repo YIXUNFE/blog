@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#6 认识浏览器缓存](https://github.com/YIXUNFE/blog/issues/6)
+
 [#5 form元素与表单提交](https://github.com/YIXUNFE/blog/issues/5)
 
 [#4 火腿肠手机上传图片出现严重BUG](https://github.com/YIXUNFE/blog/issues/4)
