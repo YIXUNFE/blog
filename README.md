@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#9 CSS样式层叠和优先级](https://github.com/YIXUNFE/blog/issues/9)
+
 [#7 认识 HTTP 2.0](https://github.com/YIXUNFE/blog/issues/7)
 
 [#6 认识浏览器缓存](https://github.com/YIXUNFE/blog/issues/6)
