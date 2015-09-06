@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>虚线的魅力</title>
+</head>
+<body>
+  <h1>虚线的魅力</h1>
+  <h2>透明三角</h2>
+  <div class="bg">
+    <div class="d"></div>
+  </div>
+  <style>
+    .bg {background: #eee; padding: 20px;}
+    .d {height: 0px; width: 0px;
+      border-width: 100px;
+      border-color: rgba(255, 255, 255, 0) rgba(255, 0, 0, 1) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+      border-style: solid;
+      /*border-style: dashed solid dashed dashed;
+      border-color: #fff #f00 #fff #fff;*/
+    }
+  </style>
+  <hr />
+  <h2>蚂蚁线</h2>
+  <svg id="svg1">
+    <path d="M5 5 L105 5 L105 105 L5 105 L5 5">
+  </svg>
+  <style>
+  #svg1 path {
+     /* fill 设置填充色 */
+    fill: none;
+
+    /* stroke 设置边框颜色 */
+    stroke: red;
+
+    /* stroke-width 设置边框宽度 */
+    stroke-width: 1px;
+    
+    stroke-dasharray: 5px;
+    animation: move 1s linear infinite;
+  }
+  
+  @keyframes move {
+    from {
+        stroke-dashoffset: 0px;
+    }
+    to {
+        stroke-dashoffset: 10px;
+    }
+  }
+  </style>
+  <hr />
+  <h2>描边动画</h2>
+  <svg id="svg2">
+    <path d="M5 5 L105 5 L105 105 L5 105 L5 5">
+  </svg>
+  <style>
+  #svg2 path {
+     /* fill 设置填充色 */
+    fill: none;
+
+    /* stroke 设置边框颜色 */
+    stroke: red;
+
+    /* stroke-width 设置边框宽度 */
+    stroke-width: 1px;
+    
+    stroke-dasharray: 400px;
+    animation: move2 1s linear infinite;
+  }
+  
+  @keyframes move2 {
+    from {
+        stroke-dashoffset: 400px;
+    }
+    to {
+        stroke-dashoffset: 0px;
+    }
+  }
+  </style>
+</body>
+</html>
