@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>canvas 操作图像像素</title>
+</head>
+<body>
+  <h1>canvas 操作图像像素</h1>
+  <div class="opt">
+    <label><input name="effect" value="origin" checked type="radio" /> 原图 </label>
+    <label><input name="effect" value="invert" type="radio" /> 反相 </label>
+    <label><input name="effect" value="average" type="radio" /> 黑白 </label>
+    <label><input name="effect" value="fuzzy" type="radio" /> 模糊 </label>
+    <label><input name="effect" value="half-average" type="radio" /> 对角线取反 </label>
+    <label><input name="effect" value="noise" type="radio" /> 噪点 </label>
+    <label><input name="effect" value="distort" type="radio" /> 扭曲 </label>
+  </div>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <canvas id="afterEffect" width="400" height="400"></canvas>
+  <style>
+  .opt {padding: 10px}
+  canvas {width: 400px; height: 400px; margin-right: 10px; border: 1px dashed #000}
+  </style>
+  <script>
+  'use strict'
+  ;(function () {
+    var ctx = document.getElementById('canvas').getContext('2d'),
+      ae = document.getElementById('afterEffect').getContext('2d'),
+      isReady = false,
+      imageData = null,
+      img = new Image()
+    
+    document.addEventListener('change', function (e) {
+      setEffect(e.target.value)
+    })
+    
+    img.addEventListener('load', function () {
+      start()
+    })
+    
+    img.src = 'img/1.png'
+    
+    function getImageData () {
+      imageData = ctx.getImageData(0, 0, 400, 400)
+    }
+    
+    function start () {
+      //绘制logo
+      ctx.drawImage(img, 0, 0)
+      
+      //获取imagedata对象
+      getImageData()
+      
+      isReady = true
+      
+      //如果有radio选中 就执行
+      var ipt = document.querySelector(':checked')
+      if (ipt) {
+        setEffect(ipt.value)
+      }
+    }
+    
+    function setEffect (v) {
+      if (!isReady) {return}
+      effectList[v]()
+    }
+    
+    var effectList = {
+      'origin': toOrigin,
+      'invert': invert,
+      'average': average,
+      'fuzzy': fuzzy,
+      'half-average': halfAverage,
+      'noise': noise,
+      'distort': distort
+    }
+    
+    function toOrigin () {
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+    }
+    
+    function invert () {
+      var data = imageData.data,
+        i = 0,
+        l = data.length
+      for (i; i < l; i += 4) {
+        data[i] = 255 - data[i]
+        data[i + 1] = 255 - data[i + 1]
+        data[i + 2] = 255 - data[i + 2]
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+      //重新获取原图的imagedata对象
+      getImageData()
+    }
+    
+    function average () {
+      var data = imageData.data,
+        i = 0,
+        l = data.length,
+        a = 0
+      for (i; i < l; i += 4) {
+        a = Math.ceil((data[i] + data[i + 1] + data[i + 2]) / 3)
+        data[i] = a
+        data[i + 1] = a
+        data[i + 2] = a
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+      //重新获取原图的imagedata对象
+      getImageData()
+    }
+    
+    function fuzzy () {
+      var data = imageData.data,
+        x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index, l, r, t, b, lt, rt, lb, rb,
+        copy = data.slice(0)
+      //循环行
+      for (y; y < h; y++) {
+        //循环列
+        for (x = 0; x < w; x++) {
+        
+          if (x >= 10 && x < w - 10 && y >= 10 && y < h - 10) {
+            index = (x + y * w) * 4
+            l = (x - 1 + y * w) * 4
+            r = (x + 1 + y * w) * 4
+            t = (x + (y - 1) * w) * 4
+            b = (x + (y + 1) * w) * 4
+            lt = (x - 1 + (y - 1) * w) * 4
+            rt = (x + 1 + (y - 1) * w) * 4
+            lb = (x - 1 + (y + 1) * w) * 4
+            rb = (x + 1 + (y + 1) * w) * 4
+            
+            //获取R平均值
+            data[index] = (copy[index] + copy[l] + copy[r] + copy[t] + copy[b] + copy[lt] + copy[rt] + copy[lb] + copy[rb]) / 9
+            
+            //获取G平均值
+            data[index + 1] = (copy[index + 1] + copy[l + 1] + copy[r + 1] + copy[t + 1] + copy[b + 1] + copy[lt + 1] + copy[rt + 1] + copy[lb + 1] + copy[rb + 1]) / 9
+            
+            //获取B平均值
+            data[index + 2] = (copy[index + 2] + copy[l + 2] + copy[r + 2] + copy[t + 2] + copy[b + 2] + copy[lt + 2] + copy[rt + 2] + copy[lb + 2] + copy[rb + 2]) / 9
+          }
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+      //重新获取原图的imagedata对象
+      getImageData()
+    }
+    
+    function halfAverage () {
+      var data = imageData.data,
+        w = imageData.width,
+        h = imageData.height,
+        i = 0,
+        l = data.length
+        
+      for (i; i < l; i += 4) {
+        if ((i / 4) % w < h - Math.floor(i / 4 / w)) {
+          data[i] = 255 - data[i]
+        data[i + 1] = 255 - data[i + 1]
+        data[i + 2] = 255 - data[i + 2]
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+      //重新获取原图的imagedata对象
+      getImageData()
+    }
+    
+    function noise () {
+      var data = imageData.data,
+        i = 0,
+        l = data.length
+      for (i; i < l; i += 4) {
+        if (Math.random() > 0.5) {
+          data[i] = 255
+          data[i + 1] = 255
+          data[i + 2] = 255
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+      //重新获取原图的imagedata对象
+      getImageData()
+    }
+    
+    function distort () {
+      var data = imageData.data,
+        copy = data.slice(0),
+        w = imageData.width,
+        h = imageData.height,
+        i = 0,
+        l = data.length,
+        x, y, d
+      for (i; i < l; i += 4) {
+        x = i / 4 % w
+        y = Math.ceil(i / 4 / w) - 1
+        d = Math.ceil(20 * Math.sin(0.09 * y))
+        if (x - d <= 0 || x - d > w) {
+          data[i + 3] = 0
+        } else {
+          data[i] = copy[i + d * 4]
+          data[i + 1] = copy[i + 1 + d * 4]
+          data[i + 2] = copy[i + 2 + d * 4]
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+      //重新获取原图的imagedata对象
+      getImageData()
+    }
+    
+  }())
+  </script>
+</body>
+</html>
