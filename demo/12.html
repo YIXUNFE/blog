@@ -360,10 +360,10 @@
       
     }
     
-    function edgeDetetion () {
+    function edgeDetetion (d) {
       var data = imageData.data,
         x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index, next,
-        arr = [], d = 25,
+        arr = [], d = d || 25,
         copy = Array.prototype.slice.apply(data, [0])
       
       //获取边界
