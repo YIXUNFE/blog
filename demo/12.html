@@ -7,13 +7,18 @@
 <body>
   <h1>canvas 操作图像像素</h1>
   <div class="opt">
-    <label><input name="effect" value="origin" checked type="radio" /> 原图 </label>
+    <label><input name="effect" value="origin" type="radio" /> 原图 </label>
     <label><input name="effect" value="invert" type="radio" /> 反相 </label>
     <label><input name="effect" value="average" type="radio" /> 黑白 </label>
     <label><input name="effect" value="fuzzy" type="radio" /> 模糊 </label>
     <label><input name="effect" value="half-average" type="radio" /> 对角线取反 </label>
     <label><input name="effect" value="noise" type="radio" /> 噪点 </label>
     <label><input name="effect" value="distort" type="radio" /> 扭曲 </label>
+    <label><input name="effect" value="line" type="radio" /> 条状 </label>
+    <label><input name="effect" value="tile" type="radio" /> 瓷砖 </label>
+    <label><input name="effect" value="veins" type="radio" /> 纹理 </label>
+    <label><input name="effect" value="split" type="radio" /> 开裂 </label>
+    <label><input name="effect" value="edge-detetion" type="radio" /> 边界 </label>
   </div>
   <canvas id="canvas" width="400" height="400"></canvas>
   <canvas id="afterEffect" width="400" height="400"></canvas>
@@ -38,7 +43,7 @@
       start()
     })
     
-    img.src = 'img/1.png'
+    img.src = 'img/' + (location.hash === '' ? 1 : (location.hash.split('#')[1] || 1)) + '.png'
     
     function getImageData () {
       imageData = ctx.getImageData(0, 0, 400, 400)
@@ -63,6 +68,9 @@
     function setEffect (v) {
       if (!isReady) {return}
       effectList[v]()
+      
+      //重新获取原图的imagedata对象
+      getImageData()
     }
     
     var effectList = {
@@ -72,7 +80,12 @@
       'fuzzy': fuzzy,
       'half-average': halfAverage,
       'noise': noise,
-      'distort': distort
+      'distort': distort,
+      'line': line,
+      'tile': tile,
+      'veins': veins,
+      'split': split,
+      'edge-detetion': edgeDetetion
     }
     
     function toOrigin () {
@@ -91,8 +104,6 @@
       
       ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
       
-      //重新获取原图的imagedata对象
-      getImageData()
     }
     
     function average () {
@@ -109,14 +120,12 @@
       
       ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
       
-      //重新获取原图的imagedata对象
-      getImageData()
     }
     
     function fuzzy () {
       var data = imageData.data,
         x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index, l, r, t, b, lt, rt, lb, rb,
-        copy = data.slice(0)
+        copy = Array.prototype.slice.apply(data, [0])
       //循环行
       for (y; y < h; y++) {
         //循环列
@@ -147,8 +156,6 @@
       
       ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
       
-      //重新获取原图的imagedata对象
-      getImageData()
     }
     
     function halfAverage () {
@@ -168,8 +175,6 @@
       
       ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
       
-      //重新获取原图的imagedata对象
-      getImageData()
     }
     
     function noise () {
@@ -177,7 +182,7 @@
         i = 0,
         l = data.length
       for (i; i < l; i += 4) {
-        if (Math.random() > 0.5) {
+        if (Math.random() > 0.9) {
           data[i] = 255
           data[i + 1] = 255
           data[i + 2] = 255
@@ -186,13 +191,11 @@
       
       ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
       
-      //重新获取原图的imagedata对象
-      getImageData()
     }
     
     function distort () {
       var data = imageData.data,
-        copy = data.slice(0),
+        copy = Array.prototype.slice.apply(data, [0]),
         w = imageData.width,
         h = imageData.height,
         i = 0,
@@ -201,8 +204,8 @@
       for (i; i < l; i += 4) {
         x = i / 4 % w
         y = Math.ceil(i / 4 / w) - 1
-        d = Math.ceil(20 * Math.sin(0.09 * y))
-        if (x - d <= 0 || x - d > w) {
+        d = Math.ceil(20 * Math.sin(0.071 * y))
+        if (x + d <= 0 || x + d > w) {
           data[i + 3] = 0
         } else {
           data[i] = copy[i + d * 4]
@@ -213,8 +216,219 @@
       
       ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
       
-      //重新获取原图的imagedata对象
-      getImageData()
+    }
+    
+    function line () {
+      var data = imageData.data,
+        x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index,
+        unitWidth = 80, deltaY = 0, i = 0, len = 400 / unitWidth, arr = [], arrIndex,
+        copy = Array.prototype.slice.apply(data, [0])
+        
+      //生成每个unitWidth的偏移量
+      for (i; i < len; i++) {
+        arr[i] = Math.ceil(Math.random() * 400)
+      }
+      
+      //循环列
+      for (x; x < w; x++) {
+        arrIndex = Math.floor(x / unitWidth)
+        deltaY = arr[arrIndex]
+        //循环行
+        for (y = 0; y < h; y++) {
+          index = (x + y * w) * 4
+          if (arrIndex % 2 === 0) {
+            data[index] = copy[(x + ((400 + y - deltaY) % 400) * w) * 4]
+            data[index + 1] = copy[(x + ((400 + y - deltaY) % 400) * w) * 4 + 1]
+            data[index + 2] = copy[(x + ((400 + y - deltaY) % 400) * w) * 4 + 2]
+          } else {
+            data[index] = 255 - copy[(x + ((400 + y - deltaY) % 400) * w) * 4]
+            data[index + 1] = 255 - copy[(x + ((400 + y - deltaY) % 400) * w) * 4 + 1]
+            data[index + 2] = 255 - copy[(x + ((400 + y - deltaY) % 400) * w) * 4 + 2]
+          }
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+    }
+    
+    function tile () {
+      var data = imageData.data,
+        x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index,
+        arr = [], tileWidth = 40, i = 0, len = Math.pow(w / tileWidth, 2), arrIndex, i1,
+        copy = Array.prototype.slice.apply(data, [0])
+        
+      //生成每个tile的色差值
+      for (i; i < len; i++) {
+        arr[i] = Math.ceil(Math.random() * 50) * (Math.random() > 0.5 ? -1 : 1)
+      }
+      
+      //循环行
+      for (y; y < h; y++) {
+        i1 = Math.floor(Math.floor(y / tileWidth) * (w / tileWidth))
+        
+        //循环列
+        for (x = 0; x < w; x++) {
+          index = (x + y * w) * 4
+          arrIndex = i1 + Math.floor(x / tileWidth)
+          
+          data[index] = copy[index] + arr[arrIndex]
+          data[index + 1] = copy[index + 1] + arr[arrIndex]
+          data[index + 2] = copy[index + 2] + arr[arrIndex]
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+    
+    }
+    
+    function veins () {
+      var data = imageData.data,
+        x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index,
+        arr = [], i = 0, current = 0,
+        copy = Array.prototype.slice.apply(data, [0])
+        
+      //生成纹理位置及色差值
+      for (i; i < h; i++) {
+        if (Math.random() > 0.25) {
+          arr.push([i, Math.ceil(Math.random() * 20)])
+        }
+      }
+      
+      //循环行
+      for (y; y < h; y++) {
+        if (arr.length && y === arr[0][0]) {
+          current = arr.shift()[1]
+        } else {
+          current = Math.random() > 0.95 ?  0 : current
+        }
+        
+        //循环列
+        for (x = 0; x < w; x++) {
+          index = (x + y * w) * 4
+          
+          data[index] = copy[index] + current
+          data[index + 1] = copy[index + 1] + current
+          data[index + 2] = copy[index + 2] + current
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+    }
+    
+    function split () {
+      var data = imageData.data,
+        x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index,
+        a, b, c, fn, delta, p, temp,
+        copy = Array.prototype.slice.apply(data, [0])
+        
+      //生成开裂算子的相关系数
+      //a: 横轴开始位置
+      a = 50 + Math.ceil(Math.random() * 200)
+      //b: 纵轴顶点位置
+      b = 250 + Math.ceil(Math.random() * 50)
+      //c: 倾斜程度
+      c = Math.random() * 5 + 2
+      //fn: 开裂算子
+      fn = function (y) {
+        return y <= b ? Math.ceil((-y + b) / c) : 0
+      }
+      
+      //循环行
+      for (y; y < h; y++) {
+        delta = fn(y)
+        if (y <= b) {
+          //循环列
+          for (x = 0; x < w; x++) {
+            index = (x + y * w) * 4
+            
+            if (x >= a && x <= a + delta) {
+              data[index + 3] = 0
+            } else if (x > a + delta) {
+              p = Math.ceil((x - a - delta) / (w - a - delta) * (w - a))
+              temp = (a + y * w + p) * 4
+              data[index] = copy[temp]
+              data[index + 1] = copy[temp + 1]
+              data[index + 2] = copy[temp + 2]
+            }
+          }
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
+    }
+    
+    function edgeDetetion () {
+      var data = imageData.data,
+        x = 0, y = 0,  l = data.length, w = imageData.width, h = imageData.height, index, next,
+        arr = [], d = 25,
+        copy = Array.prototype.slice.apply(data, [0])
+      
+      //获取边界
+      //循环行
+      for (y = 0; y < h; y++) {
+        
+        //循环列
+        for (x = 0; x < w - 1; x++) {
+          index = (x + y * w) * 4
+          next = (x + 1 + y * w) * 4
+          
+          if (Math.abs(data[index] - data[next]) <= d && Math.abs(data[index + 1] - data[next + 1]) <= d && Math.abs(data[index + 2] - data[next + 2]) <= d) {
+            arr[index] = 0
+            arr[index + 1] = 0
+            arr[index + 2] = 0
+            arr[index + 3] = 255
+          } else {
+            arr[index] = 255
+            arr[index + 1] = 255
+            arr[index + 2] = 255
+            arr[index + 3] = 255
+          }
+        }
+        arr[index + 4] = 0
+        arr[index + 5] = 0
+        arr[index + 6] = 0
+        arr[index + 7] = 255
+      }
+      
+      //循环行
+      for (y = 0; y < h - 1; y++) {
+        
+        //循环列
+        for (x = 0; x < w; x++) {
+          index = (x + y * w) * 4
+          next = (x + (y + 1) * w) * 4
+          
+          if (!(Math.abs(data[index] - data[next]) <= d && Math.abs(data[index + 1] - data[next + 1]) <= d && Math.abs(data[index + 2] - data[next + 2]) <= d)) {
+            arr[index] = 255
+            arr[index + 1] = 255
+            arr[index + 2] = 255
+            arr[index + 3] = 255
+          }
+        }
+        arr[index + w] = 0
+        arr[index + w + 1] = 0
+        arr[index + w + 2] = 0
+        arr[index + w + 3] = 255
+      }
+      
+      //循环行
+      for (y = 0; y < h; y++) {
+        
+        //循环列
+        for (x = 0; x < w; x++) {
+          index = (x + y * w) * 4
+          
+          data[index] = arr[index]
+          data[index + 1] = arr[index + 1]
+          data[index + 2] = arr[index + 2]
+        }
+      }
+      
+      ae.putImageData(imageData, 0, 0, 0, 0, 400, 400)
+      
     }
     
   }())
