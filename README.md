@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#12 Canvas 操作图像像素](https://github.com/YIXUNFE/blog/issues/12)
+
 [#11 玩转虚线边框](https://github.com/YIXUNFE/blog/issues/11)
 
 [#10 认识 Shadow DOM](https://github.com/YIXUNFE/blog/issues/10)
