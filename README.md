@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#13 用 PS 去切图](https://github.com/YIXUNFE/blog/issues/13)
+
 [#12 Canvas 操作图像像素](https://github.com/YIXUNFE/blog/issues/12)
 
 [#11 玩转虚线边框](https://github.com/YIXUNFE/blog/issues/11)
