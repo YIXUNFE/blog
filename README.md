@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#14 使用 ES6 去编程](https://github.com/YIXUNFE/blog/issues/14)
+
 [#13 用 PS 去切图](https://github.com/YIXUNFE/blog/issues/13)
 
 [#12 Canvas 操作图像像素](https://github.com/YIXUNFE/blog/issues/12)
