@@ -7,6 +7,7 @@
 ---------------
 
 ## 文章目录：
+[#15 gulp 压缩 js/CSS 文件](https://github.com/YIXUNFE/blog/issues/15)
 
 [#15 gulp 压缩 js/css 文件](https://github.com/YIXUNFE/blog/issues/15)
 
