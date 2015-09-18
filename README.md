@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#15 gulp 压缩 js/css 文件](https://github.com/YIXUNFE/blog/issues/15)
+
 [#14 使用 ES6 去编程](https://github.com/YIXUNFE/blog/issues/14)
 
 [#13 用 PS 去切图](https://github.com/YIXUNFE/blog/issues/13)
