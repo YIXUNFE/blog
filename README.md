@@ -10,7 +10,7 @@
 
 [#18 Chrome开发者工具入门](https://github.com/YIXUNFE/blog/issues/18)
 
-[#17 gulp CSS Filter Effects](https://github.com/YIXUNFE/blog/issues/17)
+[#17 CSS Filter Effects](https://github.com/YIXUNFE/blog/issues/17)
 
 [#15 gulp 压缩 js/css 文件](https://github.com/YIXUNFE/blog/issues/15)
 
