@@ -8,9 +8,9 @@
 
 ## 文章目录：
 
-[#17 Chrome开发者工具入门](https://github.com/YIXUNFE/blog/issues/17)
+[#18 Chrome开发者工具入门](https://github.com/YIXUNFE/blog/issues/18)
 
-[#16 gulp CSS Filter Effects](https://github.com/YIXUNFE/blog/issues/16)
+[#17 gulp CSS Filter Effects](https://github.com/YIXUNFE/blog/issues/17)
 
 [#15 gulp 压缩 js/css 文件](https://github.com/YIXUNFE/blog/issues/15)
 
