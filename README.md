@@ -8,7 +8,9 @@
 
 ## 文章目录：
 
-[#18 Chrome开发者工具入门](https://github.com/YIXUNFE/blog/issues/18)
+[#19 checkbox 的第三种状态](https://github.com/YIXUNFE/blog/issues/19)
+
+[#18 Chrome 开发者工具入门](https://github.com/YIXUNFE/blog/issues/18)
 
 [#17 CSS Filter Effects](https://github.com/YIXUNFE/blog/issues/17)
 
