@@ -8,6 +8,9 @@
 
 ## 文章目录：
 
+
+[#20 使用 PhantomJS 实现自动化页面体检报告（一） —— PhantomJS 学习](https://github.com/YIXUNFE/blog/issues/20)
+
 [#19 checkbox 的第三种状态](https://github.com/YIXUNFE/blog/issues/19)
 
 [#18 Chrome 开发者工具入门](https://github.com/YIXUNFE/blog/issues/18)
