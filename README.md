@@ -8,6 +8,7 @@
 
 ## 文章目录：
 
+[#21 使用 Mandrill 免费发送邮件](https://github.com/YIXUNFE/blog/issues/21)
 
 [#20 使用 PhantomJS 实现自动化页面体检报告（一） —— PhantomJS 学习](https://github.com/YIXUNFE/blog/issues/20)
 
