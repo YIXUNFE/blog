@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#25 响应式图片](https://github.com/YIXUNFE/blog/issues/25)
+
 [#24 让浏览器为你朗读](https://github.com/YIXUNFE/blog/issues/24)
 
 [#23 HTML5 Speech API](https://github.com/YIXUNFE/blog/issues/23)
