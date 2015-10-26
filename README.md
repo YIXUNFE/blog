@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#24 让浏览器为你朗读](https://github.com/YIXUNFE/blog/issues/24)
+
 [#23 HTML5 Speech API](https://github.com/YIXUNFE/blog/issues/23)
 
 [#22 使用 PhantomJS 实现自动化页面体检报告（二） —— 定时检查页面](https://github.com/YIXUNFE/blog/issues/22)
