@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#26 学习 SVG（一）—— 形状，笔画与填充](https://github.com/YIXUNFE/blog/issues/26)
+
 [#25 响应式图片](https://github.com/YIXUNFE/blog/issues/25)
 
 [#24 让浏览器为你朗读](https://github.com/YIXUNFE/blog/issues/24)
