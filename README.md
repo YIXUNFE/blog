@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#28 把嵌套的 if else 撸撸平](https://github.com/YIXUNFE/blog/issues/28)
+
 [#27 学习 SVG（二）—— 变换](https://github.com/YIXUNFE/blog/issues/27)
 
 [#26 学习 SVG（一）—— 形状，笔画与填充](https://github.com/YIXUNFE/blog/issues/26)
