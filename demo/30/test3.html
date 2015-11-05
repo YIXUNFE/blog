@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8" >
+  <title>onhashchange</title>
+</head>
 <body>
 
-<p>¸ÃÊµÀıÑİÊ¾ÁËÈçºÎÊ¹ÓÃ addEventListener()·½·¨ Ïò body ÔªËØÖĞÌí¼Ó "onhashchange" ÊÂ¼ş¡£</p>
+<p>è¯¥å®ä¾‹æ¼”ç¤ºäº†å¦‚ä½•ä½¿ç”¨ addEventListener()æ–¹æ³• å‘ body å…ƒç´ ä¸­æ·»åŠ  "onhashchange" äº‹ä»¶ã€‚</p>
 
-<p>µã»÷°´Å¥ĞŞ¸Äµ±Ç° URL µÄÃª²¿·ÖÎª #part5</p>
+<p>ç‚¹å‡»æŒ‰é’®ä¿®æ”¹å½“å‰ URL çš„é”šéƒ¨åˆ†ä¸º #part5</p>
 
-<button onclick="changePart()">µãÎÒ</button>
+<button onclick="changePart()">ç‚¹æˆ‘</button>
 
 <p id="demo"></p>
 
 <script>
-// Ê¹ÓÃ location.hash ÊôĞÔÀ´ĞŞ¸ÄÃª²¿·Ö
+// ä½¿ç”¨ location.hash å±æ€§æ¥ä¿®æ”¹é”šéƒ¨åˆ†
 function changePart() {
     location.hash = "part5";
-    var x = "Ãª²¿·ÖÏÖÔÚÎª: " + location.hash;
+    var x = "é”šéƒ¨åˆ†ç°åœ¨ä¸º: " + location.hash;
     document.getElementById("demo").innerHTML = x;
 }
 
 window.addEventListener("hashchange", myFunction);
 
 function myFunction() {
-    alert("Ãª²¿·ÖÒÑĞŞ¸Ä£¡");
+    alert("é”šéƒ¨åˆ†å·²ä¿®æ”¹ï¼");
 }
 </script>
 
