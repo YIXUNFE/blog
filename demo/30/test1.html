@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body onhashchange="myFunction()">
+
+<p>该实例演示了如何向 body 元素中添加 "onhashchange" 事件。</p>
+
+<p>点击按钮修改当前 URL 的锚部分为 #part5</p>
+
+<button onclick="changePart()">点我</button>
+
+<p id="demo"></p>
+
+<script>
+// 使用 location.hash 属性来修改锚部分
+function changePart() {
+    location.hash = "part5";
+    var x = "锚部分现在为: " + location.hash;
+    document.getElementById("demo").innerHTML = x;
+}
+
+// 如果锚部分改变则弹出提示窗口
+function myFunction() {
+    alert("锚部分已修改！");
+}
+</script>
+
+</body>
+</html>
+			
