@@ -1,0 +1,83 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<title>onhashchange|item1</title>
+<style type="text/css">
+body{margin:0 200px;}
+h1{text-align:center;}
+.tabBox{text-align:left;}
+.tabCon div {display: none;}
+.tabCon .show{display: block;}
+ul.tabTit{margin:0;padding:0;list-style-type:none;width:100%;float:left;border-bottom:1px solid #000;}
+ul.tabTit li{ display:block; float:left; width:80px; background:#fff;border:1px solid #000;border-bottom:none;border-right:none;text-align:center;height:24px;}
+ul.tabTit li:last-child{border-right:1px solid #000;}
+ul.tabTit li.last{border-right:1px solid #000;}
+ul.tabTit li a{ display:block; background:#fff;width:100%;height:100%;}
+.tabCon{border:1px solid #000; border-top:none;padding:15px; clear:both;}
+.hide{display:none;}
+ul.tabTit li.current{ position:relative; bottom:-1px;margin-top:-1px;height:25px;}
+ul.tabTit li.current a{color:red;}
+.action{ border:1px solid #369; background:#FF9900;color:#FFF;margin:15px 0;padding:10px;}
+#currentObj{text-align:left;}
+#currentObj em{color:#f00;}
+</style>
+</head>
+<body>
+<h3>tab标签切换</h3>
+<div class="tabBox" id="hashTab">
+	<ul class="tabTit">
+		<li class="current"><a href="#item1">item1</a></li>
+		<li><a href="#item2">item2</a></li>	
+		<li><a href="#item3">item3</a></li>
+		<li><a href="#item4">item4</a></li>
+	</ul>
+	<div class="tabCon">
+		<div class="show" id="item1">
+			这里是第一个选项
+		</div>
+		<div   id="item2">
+			这里是第二个选项
+		</div>
+		<div   id="item3">
+			这里是第三个选项
+		</div>
+		<div   id="item4">
+			这里是第四个选项
+		</div>
+	</div>
+</div>
+<p id="currentObj">当前被点击的对象为：<strong><em>#item1</em></strong></p>
+</body>
+
+<script type="text/javascript">
+
+ window.addEventListener('hashchange', changeTab)
+
+ function changeTab () {
+ 	//alert(location.hash)
+ 	//#item1 - ['', 'item1']
+	if (location.hash.indexOf('item') === -1) {return}
+
+ 	var index = location.hash.match(/\d/)[0] - 1//location.hash.split('#')[1].replace('item', '')
+
+ 	var tit = document.querySelectorAll('.tabTit li')
+ 	var con = document.querySelectorAll('.tabCon div')
+ 	var i = 0, l = tit.length
+
+ 	for (i; i < l; i++) {
+ 		tit.item(i).className = '';
+ 		con.item(i).className = '';
+ 	}
+
+ 	tit.item(index).className = 'current';
+ 	con.item(index).className = 'show';
+
+
+ 	document.querySelector('#currentObj em').innerHTML = '#item' + (index + 1)
+ }
+
+ changeTab()
+</script>
+</html>
