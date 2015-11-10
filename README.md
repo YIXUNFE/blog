@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#32 从零开始，用 React 写一个组件](https://github.com/YIXUNFE/blog/issues/32)
+
 [#31 学习 SVG（四）—— 复用图形](https://github.com/YIXUNFE/blog/issues/31)
 
 [#30 关于onhashchange事件](https://github.com/YIXUNFE/blog/issues/30)
