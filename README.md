@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#31 学习 SVG（四）—— 复用图形](https://github.com/YIXUNFE/blog/issues/31)
+
+[#30 关于onhashchange事件](https://github.com/YIXUNFE/blog/issues/30)
+
 [#29 学习 SVG（三）—— 路径](https://github.com/YIXUNFE/blog/issues/29)
 
 [#28 把嵌套的 if else 撸撸平](https://github.com/YIXUNFE/blog/issues/28)
