@@ -44,10 +44,16 @@ var Popup = React.createClass({
       }
     })
   },
-  onMouseUp: function () {
-    if (!this.state.ready) {return}
-    
-    this.setState({ready: false})
+  onMouseUp: function (e) {
+    var state = {ready: false},
+      isNotify = false
+    if (this.refs.popup !== e.target) {
+      state.status = 'none'
+      isNotify = true
+    }
+    this.setState(state, function () {
+      isNotify && this.props.change()
+    })
   },
   render: function () {
     var style = {
@@ -73,7 +79,12 @@ var Component = React.createClass({
   },
   onClick: function () {
     this.toggle()
-    
+  },
+  change: function () {
+    //接到popup关闭的通知后，改变按钮状态
+    this.setState({status: 'off'}, function () {
+      this.refs.btn.off()
+    })
   },
   render: function () {
     return (
@@ -81,7 +92,7 @@ var Component = React.createClass({
         <div onClick={this.onClick} >
           <ClickBtn ref="btn" />
         </div>
-        <Popup ref="pop" />
+        <Popup ref="pop" change={this.change} />
       </div>
     )
   },
