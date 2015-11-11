@@ -47,13 +47,11 @@ var Popup = React.createClass({
   onMouseUp: function (e) {
     var state = {ready: false},
       isNotify = false
-    if (this.refs.popup !== e.target) {
-      state.status = 'none'
+    if (this.refs.popup !== e.target && this.state.status === 'block') {
       isNotify = true
     }
-    this.setState(state, function () {
-      isNotify && this.props.change()
-    })
+    isNotify && this.props.change(e)
+    this.setState(state)
   },
   render: function () {
     var style = {
@@ -80,11 +78,11 @@ var Component = React.createClass({
   onClick: function () {
     this.toggle()
   },
-  change: function () {
-    //接到popup关闭的通知后，改变按钮状态
-    this.setState({status: 'off'}, function () {
-      this.refs.btn.off()
-    })
+  change: function (e) {
+    //如果点到的是按钮组件，就不执行这个方法了，因为执行了 onClick 了
+    if (this.refs.btn.refs.btn !== e.target) {
+      this.toggle()
+    }
   },
   render: function () {
     return (
