@@ -45,13 +45,12 @@ var Popup = React.createClass({
     })
   },
   onMouseUp: function (e) {
-    var state = {ready: false},
-      isNotify = false
+    var isNotify = false
     if (this.refs.popup !== e.target && this.state.status === 'block') {
       isNotify = true
     }
     isNotify && this.props.change(e)
-    this.setState(state)
+    this.setState({ready: false})
   },
   render: function () {
     var style = {
