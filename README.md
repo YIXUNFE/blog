@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#33 Promise的队列与setTimeout的队列的有何关联？（内容转自知乎）](https://github.com/YIXUNFE/blog/issues/33)
+
 [#32 从零开始，用 React 写一个组件](https://github.com/YIXUNFE/blog/issues/32)
 
 [#31 学习 SVG（四）—— 复用图形](https://github.com/YIXUNFE/blog/issues/31)
