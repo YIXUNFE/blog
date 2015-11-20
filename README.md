@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#34 Event Loop & Message Queue](https://github.com/YIXUNFE/blog/issues/34)
+
 [#33 Promise的队列与setTimeout的队列的有何关联？（内容转自知乎）](https://github.com/YIXUNFE/blog/issues/33)
 
 [#32 从零开始，用 React 写一个组件](https://github.com/YIXUNFE/blog/issues/32)
