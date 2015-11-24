@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#35 认识 Lazy Function Definition](https://github.com/YIXUNFE/blog/issues/35)
+
 [#34 Event Loop & Message Queue](https://github.com/YIXUNFE/blog/issues/34)
 
 [#33 Promise的队列与setTimeout的队列的有何关联？（内容转自知乎）](https://github.com/YIXUNFE/blog/issues/33)
