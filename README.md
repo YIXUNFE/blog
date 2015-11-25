@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#36 用 css3 实现 3D 旋转立方体](https://github.com/YIXUNFE/blog/issues/36)
+
 [#35 认识 Lazy Function Definition](https://github.com/YIXUNFE/blog/issues/35)
 
 [#34 Event Loop & Message Queue](https://github.com/YIXUNFE/blog/issues/34)
