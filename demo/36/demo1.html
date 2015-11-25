@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			html{
+				background:radial-gradient(ellipse at center,#430d6d 0%,#000 100%);
+				height:100%;
+			}
+			body{
+				width:20em;height:20em;
+				/*在窗口居中*/
+				position:absolute;
+				top:50%;left:50%;
+				margin-top:-10em;
+				margin-left:-10em;
+				/*border:1px solid red;*/
+				perspective:1000px;
+			}
+			cube{
+				width:100%;height:100%;
+				/*这里若不设置cube的position，在firebug调试computed中看到所占空间0 0，所以动画会以左上角为中心点旋转*/
+				position:absolute;
+				transform-style:preserve-3d;
+				animation:cube 6s linear infinite;
+				-webkit-animation:cube 6s linear infinite;
+			}
+			@keyframes cube{
+				from{transform:translateZ(-10em) rotateX(0deg) rotateY(0deg);}
+				to{transform:translateZ(-10em) rotateX(360deg) rotateY(360deg);}
+			}
+			@-webkit-keyframes cube{
+				from{transform:translateZ(-10em) rotateX(0deg) rotateY(0deg);}
+				to{transform:translateZ(-10em) rotateX(360deg) rotateY(360deg);}
+			}
+			cube :not(div){
+				width:20em;height:20em;
+				position:absolute;
+				
+				background:linear-gradient(180deg,rgba(0,0,0,0) 0px,rgba(54,226,248,.5) 0px,
+					rgba(54,226,248,.5) 3px,rgba(0,0,0,0) 3px),
+					linear-gradient(90deg,rgba(0,0,0,0) 0px,rgba(54,226,248,.5) 0px,
+					rgba(54,226,248,.5) 3px,rgba(0,0,0,0) 3px);
+					
+				background-size:2.5em 2.5em,2.5em 2.5em;
+				border:2px solid rgba(54,226,248,.5);
+				box-shadow:0 0 5em rgba(0,128,0,.4);
+			}
+			back{
+				transform:rotateX(180deg) translateZ(10em);
+			}
+			bottom{
+				transform:rotateX(-90deg) translateZ(10em);
+			}
+			top{
+				transform:rotateX(90deg) translateZ(10em);
+			}
+			front{
+				transform:rotateX(0deg) translateZ(10em);
+			}
+			left{
+				transform:rotateY(-90deg) translateZ(10em);
+			}
+			right{
+				transform:rotateY(90deg) translateZ(10em);
+			}
+			div{
+				color:#fff;font-size:40px;font-weight:bold;text-align:center;
+				line-height:320px;
+				text-shadow:0 1px 0 #ccc,0 2px 0 #bbb,0 3px 0 #c9c9c9,0 4px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<cube>
+			<front></front>
+			<back></back>
+			<left></left>
+			<right></right>
+			<top></top>
+			<bottom></bottom>
+			<div>放飞梦想</div>
+		</cube>
+	</body>
+</html>
