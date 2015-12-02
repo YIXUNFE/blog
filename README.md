@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#38 DOM 中的范围](https://github.com/YIXUNFE/blog/issues/38)
+
+[#37 麻麻不会告诉你的几点 Javascript 知识（一）](https://github.com/YIXUNFE/blog/issues/37)
+
 [#36 用 css3 实现 3D 旋转立方体](https://github.com/YIXUNFE/blog/issues/36)
 
 [#35 认识 Lazy Function Definition](https://github.com/YIXUNFE/blog/issues/35)
