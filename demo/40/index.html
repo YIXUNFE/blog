@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>EmberJS</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<script type="text/x-handlebars">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">书签</a>
+            </div>
+            <ul class="nav navbar-nav pull-right">
+                <li>{{#link-to 'newbookmark'}}新建{{/link-to}}</li>
+            </ul>
+        </div>
+    </nav>
+    <div id="main" class="container">
+        {{outlet}}
+    </div>
+</script>
+
+<script type="text/x-handlebars" id="index">
+    <div class="row">
+        <div class="col-md-4">
+            <table class='table'>
+                <thead>
+                <tr>
+                    <th colspan="2">最近更新</th>
+                </tr>
+                </thead>
+                {{#each controller itemController='BookmarkDel' }}
+                <tr>
+                    <td>
+                        {{#link-to 'bookmark' this}}
+                        {{title}}
+                        {{/link-to}}
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-danger" {{action 'del' this}}>删除</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="col-md-8">
+            {{outlet}}
+        </div>
+    </div>
+</script>
+
+<script type="text/x-handlebars" id="bookmark">
+    <h1>{{title}}</h1>
+
+    <h3><a {{ bind-attr href=url }} target='_blank'>链接</a></h3>
+
+    <h2> by {{fullname}}
+        <small class="muted">{{format-date submittedOn}}</small>
+    </h2>
+    {{#each tagnames}}
+    <span class="label label-primary">{{this}}</span>
+    {{/each}}
+    <hr>
+    <p class="lead">{{excerpt}}</p>
+    <button type="submit" class="btn" {{action 'edit'}}>编辑</button>
+    {{#if isediting}}
+    {{partial 'bookmark/edit'}}
+    {{/if}}
+</script>
+<script type="text/x-handlebars" id="bookmark/edit">
+    <h1>{{input value=title class='form-control'}}</h1>
+    <h4>{{input value=url class='form-control'}}</h4>
+    <h2> by {{input value=fullname class='form-control'}} </h2>
+    {{textarea value=tags class='textarea' class='form-control'}}
+    <hr>
+    {{textarea value=excerpt class='form-control' rows='3'}}
+    <button type="submit" class="btn update btn-success" {{action 'update' this}}>更新</button>
+</script>
+
+<script type="text/x-handlebars" id="newbookmark">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">标题</label>
+            <div class="col-sm-10">
+                <input type="title" class="form-control" id="title" name="title" placeholder="标题" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="excerpt" class="col-sm-2 control-label">摘要</label>
+
+            <div class="col-sm-10">
+                <textarea class="form-control" id="excerpt" name="excerpt" placeholder="摘要" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">地址</label>
+
+            <div class="col-sm-10">
+                <input type="url" class="form-control" id="url" name="url" placeholder="链接地址" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tags" class="col-sm-2 control-label">标签</label>
+
+            <div class="col-sm-10">
+                <textarea id="tags" class="form-control" name="tags" placeholder="逗号分隔标签" rows="3" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fullname" class="col-sm-2 control-label">姓名</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="请输入自己的姓名" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" {{action 'save'}}>提交</button>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script src="js/libs/jquery-1.9.1.js"></script>
+<script src="js/libs/handlebars-1.0.0.js"></script>
+<script src="js/libs/ember-1.1.2.js"></script>
+<script src="js/libs/ember-data.js"></script>
+<script src="js/libs/localstorage_adapter.js"></script>
+<script src="js/libs/moment.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

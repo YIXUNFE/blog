@@ -1,0 +1,11 @@
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}
+body{
+    padding-top: 40px;
+}
+
+.update{margin-top: 20px;}
+.table tr td{border-collapse:collapse;height: 40px; line-height: 40px !important; border-top: 0 none; border-bottom: 1px solid #ddd;}
+.table tr td a{height: 40px; line-height: 40px; display: inline-block;}
