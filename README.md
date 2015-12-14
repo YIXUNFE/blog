@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#40 EmberJS 入门指南](https://github.com/YIXUNFE/blog/issues/40)
+
+[#39 浅谈前端缓存粗粒度](https://github.com/YIXUNFE/blog/issues/39)
+
 [#38 DOM 中的范围](https://github.com/YIXUNFE/blog/issues/38)
 
 [#37 麻麻不会告诉你的几点 Javascript 知识（一）](https://github.com/YIXUNFE/blog/issues/37)
