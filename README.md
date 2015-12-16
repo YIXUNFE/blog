@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#41 Google Safebrowsing 与 前端静态资源加载](https://github.com/YIXUNFE/blog/issues/41)
+
 [#40 EmberJS 入门指南](https://github.com/YIXUNFE/blog/issues/40)
 
 [#39 浅谈前端缓存粗粒度](https://github.com/YIXUNFE/blog/issues/39)
