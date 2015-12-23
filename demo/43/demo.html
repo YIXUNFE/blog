@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>旋转心</title>
+		<meta charset="utf-8" />
+		<style>
+			body{background-color:black;}
+			.heart_div{
+				width:200px;
+				height:320px;
+				transform-style:preserve-3d;
+				position: relative;
+				left: 0;top:0;bottom: 0;right: 0;
+				margin:200px auto;
+				animation:play 10s linear infinite;
+				-webkit-animation:play 10s linear infinite;
+				-moz-animation:play 10s linear infinite;
+				-o-animation:play 10s linear infinite;
+				-ms-animation:play 10s linear infinite;
+			}
+			.heart_div [class^="heart"]{
+				width:200px;
+				height:320px;
+				border:solid red;
+				border-width:2px 2px 0 0;
+				border-radius:50% 50% 0%/40% 50% 0%;
+				position: absolute;
+			}
+			@keyframes play{
+				to{
+					transform:rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+				}
+			}
+			@-webkit-keyframes play{
+				to{
+					transform:rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+				}
+			}
+			@-moz-keyframes play{
+				to{
+					transform:rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+				}
+			}
+			@-o-keyframes play{
+				to{
+					transform:rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+				}
+			}
+			@-ms-keyframes play{
+				to{
+					transform:rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+	
+		<div class="heart_div"></div>
+		<script>
+			var heart_div = document.getElementsByClassName("heart_div")[0];
+			for(var i = 1;i<37;i++){
+				/*给heart_div添加36个子元素 且类名为 heart1 heart2 ...*/
+				var div = document.createElement("div");
+				div.className = "heart"+i;
+				/*给.heart1-36 添加样式   这里也可以用下边注释地方代替（用到createTextNode方法）*/
+				div.style.transform="rotateY("+i*10+"deg) rotateZ(45deg) translateX(60px)";
+				heart_div.appendChild(div);
+			}
+			/*var s_name,s_value;
+			var style = document.getElementsByTagName("style")[0];
+			for(var j=1;j<37;j++){
+				s_name = ".heart_div [class$='"+j+"']";
+				s_value = "{transform:rotateY("+j*10+"deg) rotateZ(45deg) translateX(60px);}";
+				//console.log(s_name+s_value);
+				try{
+					style.appendChild(document.createTextNode(s_name+s_value));
+				}catch(e){
+					//IE不允许访问style/script子节点，会抛出错误，可以访问元素的styleSheet属性，该属性又有一个cssText属性，可以接受css代码
+					style.styleSheet.cssText += s_name+s_value;
+				}
+			}*/
+			
+		</script>
+	</body>
+</html>
