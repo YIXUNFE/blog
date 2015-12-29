@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#44 写给忙碌工作而有感无力的你](https://github.com/YIXUNFE/blog/issues/44)
+
+[#43 用 css3 实现 3D 旋转心](https://github.com/YIXUNFE/blog/issues/43)
+
 [#42 HTA, HTML Application](https://github.com/YIXUNFE/blog/issues/42)
 
 [#41 Google Safebrowsing 与 前端静态资源加载](https://github.com/YIXUNFE/blog/issues/41)
