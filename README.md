@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#46 用 JS 制作随机地图（一）](https://github.com/YIXUNFE/blog/issues/46)
+
 [#45 妙用history.state做无刷页面切换](https://github.com/YIXUNFE/blog/issues/45)
 
 [#44 写给忙碌工作而有感无力的你](https://github.com/YIXUNFE/blog/issues/44)
