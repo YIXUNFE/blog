@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="js/angular-1.3.0.min.js"></script>
+        <script>
+			var app = angular.module("myApp", []);
+			app.controller('booklistCtrl',function($scope,$http){
+				$scope.booklist = "";
+				$http({
+					method:'GET',
+					url:'data.json'
+				}).success(function(data){
+					$scope.booklist = data;
+				}).error(function(data){
+					console.log(data);
+				});
+			});
+		</script>
+    </head>
+    <body>
+<div ng-app="myApp" ng-controller="booklistCtrl"> 
+	<ul>
+	  <li ng-repeat="book in booklist">
+		{{ book.name + ', ' + book.price }}
+	  </li>
+	</ul>
+</div>
+    </body>
+</html>
