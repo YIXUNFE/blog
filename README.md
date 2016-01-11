@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#48 Angularjs 入门指南](https://github.com/YIXUNFE/blog/issues/48)
+
+[#47 用 JS 制作随机地图（二）](https://github.com/YIXUNFE/blog/issues/47)
+
 [#46 用 JS 制作随机地图（一）](https://github.com/YIXUNFE/blog/issues/46)
 
 [#45 妙用history.state做无刷页面切换](https://github.com/YIXUNFE/blog/issues/45)
