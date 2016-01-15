@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#50 关于 CORS —— 小船翻在了 IE8 的小沟沟里](https://github.com/YIXUNFE/blog/issues/50)
+
+[#49 用 JS 制作随机地图（三）](https://github.com/YIXUNFE/blog/issues/49)
+
 [#48 Angularjs 入门指南](https://github.com/YIXUNFE/blog/issues/48)
 
 [#47 用 JS 制作随机地图（二）](https://github.com/YIXUNFE/blog/issues/47)
