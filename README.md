@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#52 如何将 N 个点用光滑的曲线连接](https://github.com/YIXUNFE/blog/issues/52)
+
+[#51 为网站添加 OpenSearch 功能](https://github.com/YIXUNFE/blog/issues/51)
+
 [#50 关于 CORS —— 小船翻在了 IE8 的小沟沟里](https://github.com/YIXUNFE/blog/issues/50)
 
 [#49 用 JS 制作随机地图（三）](https://github.com/YIXUNFE/blog/issues/49)
