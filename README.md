@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#54 整站侧边栏开发实践（二）——内容](https://github.com/YIXUNFE/blog/issues/54)
+
+[#53 整站侧边栏开发实践（一）——栏目](https://github.com/YIXUNFE/blog/issues/53)
+
 [#52 如何将 N 个点用光滑的曲线连接](https://github.com/YIXUNFE/blog/issues/52)
 
 [#51 为网站添加 OpenSearch 功能](https://github.com/YIXUNFE/blog/issues/51)
