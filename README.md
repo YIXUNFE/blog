@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#55 易豆每日签到功能实现](https://github.com/YIXUNFE/blog/issues/55)
+
 [#54 整站侧边栏开发实践（二）——内容](https://github.com/YIXUNFE/blog/issues/54)
 
 [#53 整站侧边栏开发实践（一）——栏目](https://github.com/YIXUNFE/blog/issues/53)
