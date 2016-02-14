@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#56 利用 jQuery.when 简化代码](https://github.com/YIXUNFE/blog/issues/56)
+
 [#55 易豆每日签到功能实现](https://github.com/YIXUNFE/blog/issues/55)
 
 [#54 整站侧边栏开发实践（二）——内容](https://github.com/YIXUNFE/blog/issues/54)
