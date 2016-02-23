@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>一个球运动</title>
+	<script>
+		window.addEventListener('load',eventWindowLoaded,false);
+		function eventWindowLoaded(){
+			canvasApp();
+		}
+		//判断浏览器是否支持canvas标签
+		function canvasSupport(){
+			return !!document.createElement('canvas').getContext;
+		}
+		
+		function canvasApp(){
+			if(!canvasSupport()){
+				return;
+			}
+
+			var speed = 5;
+			var p1 = {x:20,y:20};
+			var angle = 45;
+			var radians = angle * Math.PI/180;
+			var xunits = Math.cos(radians) * speed;
+			var yunits = Math.sin(radians) * speed;
+			var ball = {x:p1.x,y:p1.y,radius:10};
+
+			var theCanvas = document.getElementById('canvasOne');
+			var context = theCanvas.getContext('2d');
+
+			//渲染画布
+			function drawScreen(){
+				context.fillStyle = '#eee';
+				context.fillRect(0,0,theCanvas.width,theCanvas.height);
+				context.strokeRect(1,1,theCanvas.width-2,theCanvas.height-2);
+				context.fillStyle = 'red';
+				
+				ball.x += xunits;
+				ball.y += yunits;
+
+				if(ball.x+ball.radius > theCanvas.width){
+					ball = {x:p1.x,y:p1.y,radius:10};
+				}
+
+				context.beginPath();
+				context.arc(ball.x,ball.y,ball.radius,0,Math.PI*2,true);
+				context.closePath();
+				context.fill();
+			}
+			
+			var timeOut = setInterval(drawScreen,100);
+		}
+	</script>
+</head>
+<body>
+	<div style="position:absolute;top:50px;left:50px;">
+		<canvas id="canvasOne" width="200" height="200">
+			该浏览器不支持canvas。
+		</canvas>
+	</div>
+</body>
+</html>

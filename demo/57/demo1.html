@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>多球反弹运动</title>
+	<script>
+		window.addEventListener('load',eventWindowLoaded,false);
+		function eventWindowLoaded(){
+			canvasApp();
+		}
+		//判断浏览器是否支持canvas标签
+		function canvasSupport(){
+			return !!document.createElement('canvas').getContext;
+		}
+		
+		function canvasApp(){
+			if(!canvasSupport()){
+				return;
+			}
+			//定义球数量
+			var numBalls = 100;
+			//球最大半径 最小半径
+			var maxSize = 6,minSize = 4;
+			//定义球最大速度
+			var maxspeed=maxSize+5;
+			var balls = [];
+			// 当前球 x坐标 y坐标 速度 角度 半径 弧度 x方向增量 y方向增量
+			var tempBall,tempX,tempY,tempSpeed,tempAngle,tempRadius,tempRadians,tempXunits,tempYunits;
+
+			var theCanvas = document.getElementById('canvasOne');
+			var context = theCanvas.getContext('2d');
+
+			//初始化100个球
+			for(var i = 0 ; i < numBalls; i ++){
+				tempRadius = Math.floor(Math.random()*maxSize)+minSize;
+				tempX = tempRadius + Math.floor(Math.random()*(theCanvas.width - tempRadius*2));
+				tempY = tempRadius + Math.floor(Math.random()*(theCanvas.height - tempRadius*2));
+				tempSpeed = maxspeed - tempRadius;
+				tempAngle = Math.floor(Math.random()*360);
+				tempRadians = tempAngle * Math.PI/180;
+				tempXunits = Math.cos(tempRadians) * tempSpeed;
+				tempYunits = Math.sin(tempRadians) * tempSpeed;
+
+				tempBall = {x:tempX,y:tempY,radius:tempRadius,speed:tempSpeed,angle:tempAngle,radians:tempRadians,xunits:tempXunits,yunits:tempYunits};
+				balls.push(tempBall);
+			}
+
+			//渲染画布
+			function drawScreen(){
+				context.fillStyle = '#eee';
+				context.fillRect(0,0,theCanvas.width,theCanvas.height);
+				context.strokeRect(1,1,theCanvas.width-2,theCanvas.height-2);
+				context.fillStyle = '#000';
+				var ball;
+				for(var i=0; i < balls.length; i++){
+					ball = balls[i];
+					ball.x += ball.xunits;
+					ball.y += ball.yunits;
+					// ball.x 预先知道是否超出墙面，若超出反向运动
+					if(ball.x+ball.radius > theCanvas.width || ball.x-ball.radius < 0){
+						ball.angle = 180 - ball.angle;
+						updateBall(ball);
+					}else if(ball.y+ball.radius > theCanvas.height || ball.y-ball.radius < 0){
+						ball.angle = 360 - ball.angle;
+						updateBall(ball);
+					}
+
+					context.beginPath();
+					context.arc(ball.x,ball.y,ball.radius,0,Math.PI*2,true);
+					context.closePath();
+					context.fill();
+				}
+			}
+			
+			function updateBall(ball){
+				 ball.radians = ball.angle * Math.PI/180;
+				 ball.xunits = Math.cos(ball.radians)*ball.speed;
+				 ball.yunits = Math.sin(ball.radians)*ball.speed;
+			}
+			function gameLoop(){
+				window.setTimeout(gameLoop,200);
+				drawScreen();
+			}
+			gameLoop();
+		}
+	</script>
+</head>
+<body>
+	<div style="position:absolute;top:50px;left:50px;">
+		<canvas id="canvasOne" width="500" height="500">
+			该浏览器不支持canvas。
+		</canvas>
+	</div>
+</body>
+</html>
