@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#58 整站侧边栏开发实践（三）——转场](https://github.com/YIXUNFE/blog/issues/58)
+
+[#57 Canvas 多球撞墙反弹](https://github.com/YIXUNFE/blog/issues/57)
+
 [#56 利用 jQuery.when 简化代码](https://github.com/YIXUNFE/blog/issues/56)
 
 [#55 易豆每日签到功能实现](https://github.com/YIXUNFE/blog/issues/55)
