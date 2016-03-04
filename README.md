@@ -8,7 +8,7 @@
 
 ## 文章目录：
 
-[#59 使用 JSDUCK 生成 API](https://github.com/YIXUNFE/blog/issues/59)
+[#59 使用 JSDUCK 生成 API 文档](https://github.com/YIXUNFE/blog/issues/59)
 
 [#58 整站侧边栏开发实践（三）——转场](https://github.com/YIXUNFE/blog/issues/58)
 
