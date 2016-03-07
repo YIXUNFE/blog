@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#60 使用 stroke-dasharray 制作环形图](https://github.com/YIXUNFE/blog/issues/60)
+
 [#59 使用 JSDUCK 生成 API 文档](https://github.com/YIXUNFE/blog/issues/59)
 
 [#58 整站侧边栏开发实践（三）——转场](https://github.com/YIXUNFE/blog/issues/58)
