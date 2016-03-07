@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>环形图</title>
+</head>
+<body>
+  <div id="div"></div>
+  <script>
+  /**
+   * createArcs 
+   * @param {Object} args 配置项
+   * @example createArcs({
+        bin: div,
+        width: 400,
+        height: 400,
+        r: 180,
+        arcWidth: 20,
+        data: [
+          {color: '#ff0000', percent: 0.2, text: '第1项'},
+          {color: '#ffff00', percent: 0.7, text: '第2项'},
+          {color: '#ff00ff', percent: 0.1, text: '第3项'}
+        ]
+      })
+   */
+  function createArcs (args) {
+    var html = '<svg id="ringSvg" width="' + args.width + '" height="' + args.width + '" >',
+      cx = args.width / 2, cy = args.height / 2,
+      r = args.r,
+      aw = args.arcWidth,
+      data = args.data,
+      i = 0, l = 0,
+      deltaR = 15, //鼠标移动上去时候的偏移值
+      circleLong = r * 2 * Math.PI,
+      cl2 = (r + deltaR) * 2 * Math.PI,
+      currentReg = 0,
+      itemData = []
+    
+    html += '<circle class="defaut-arc" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-width="' + aw + '" stroke="none" fill="none"></circle>'
+    
+    l = data.length
+    for (i; i < l; i++) {
+      html += (function (i) {
+        return getCircle(data[i])
+      }(i))
+    }
+    
+    function getCircle (d) {
+      var l1 = Math.ceil(circleLong * d.percent),
+        l2 = Math.ceil(circleLong * (1 - d.percent)),
+        l3 = Math.ceil(cl2 * d.percent),
+        l4 = Math.ceil(cl2 * (1 - d.percent)),
+        html = ''
+        // rotate(' + (d.percent * 180 + currentReg * 360) + ', ' + cx + ', ' + cy + ')
+      html = '<circle class="arc-item arc-item' + i + '" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-width="' + aw + '" stroke="' + d.color + '" fill="none" transform="rotate(' + (-90 + currentReg * 360) + ', ' + cx + ', ' + cy + ')" stroke-dasharray="' + l1 + ' ' + l2 + '"></circle>'
+      currentReg = (d.percent * 100 + currentReg * 100) / 100
+      itemData.push([l1 + ' ' + l2, l3 + ' ' + l4])
+      return html
+    }
+    
+    html += '</svg>'
+    
+    args.bin.innerHTML = html
+    
+    var items = document.querySelectorAll('.arc-item'), i = 0, l = items.length, temp = null, cd = null
+    for (i; i < l; i++) {
+      temp = items[i]
+      ;(function (i) {
+        
+        temp.addEventListener('mouseenter', function () {cd = itemData[i]
+          this.setAttribute('r', r + deltaR)
+          this.setAttribute('stroke-dasharray', cd[1])
+        })
+        temp.addEventListener('mouseout', function () {cd = itemData[i]
+          this.setAttribute('r', r)
+          this.setAttribute('stroke-dasharray', cd[0])
+        })
+      }(i))
+    }
+  }
+
+  createArcs({
+    bin: div,
+    width: 400,
+    height: 400,
+    r: 120,
+    arcWidth: 80,
+    data: [
+      {color: '#ff0000', percent: 0.25, text: '第1项'},
+      {color: '#ffff00', percent: 0.15, text: '第2项'},
+      {color: '#ff00ff', percent: 0.30, text: '第3项'},
+      {color: '#00f0ff', percent: 0.20, text: '第4项'},
+      {color: '#faaaaf', percent: 0.1, text: '第5项'}
+    ]
+  })
+  </script>
+  <style>
+  .arc-item {transition: r ease-in .25s, stroke-dasharray ease-in .25s}
+  </style>
+</body>
+</html>
