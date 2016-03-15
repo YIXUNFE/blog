@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#62 又简单得尝试了 Electron](https://github.com/YIXUNFE/blog/issues/62)
+
+[#61 简单得尝试了一下 node-webkit](https://github.com/YIXUNFE/blog/issues/61)
+
 [#60 使用 stroke-dasharray 制作环形图](https://github.com/YIXUNFE/blog/issues/60)
 
 [#59 使用 JSDUCK 生成 API 文档](https://github.com/YIXUNFE/blog/issues/59)
