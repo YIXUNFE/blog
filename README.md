@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#64 利用 Electron 开发快速截图工具（一）](https://github.com/YIXUNFE/blog/issues/64)
+
+[#63 巧用 JAVASCRIPT 中的位运算](https://github.com/YIXUNFE/blog/issues/63)
+
 [#62 又简单得尝试了 Electron](https://github.com/YIXUNFE/blog/issues/62)
 
 [#61 简单得尝试了一下 node-webkit](https://github.com/YIXUNFE/blog/issues/61)
