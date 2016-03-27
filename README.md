@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#66 NPM 悲剧了！](https://github.com/YIXUNFE/blog/issues/66)
+
+[#65 利用 Electron 开发快速截图工具（二）](https://github.com/YIXUNFE/blog/issues/65)
+
 [#64 利用 Electron 开发快速截图工具（一）](https://github.com/YIXUNFE/blog/issues/64)
 
 [#63 巧用 JAVASCRIPT 中的位运算](https://github.com/YIXUNFE/blog/issues/63)
