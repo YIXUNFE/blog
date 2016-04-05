@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#68 我眼中的理想发布流程](https://github.com/YIXUNFE/blog/issues/68)
+
+[#67 易迅前端工具盒介绍（一）——构建功能](https://github.com/YIXUNFE/blog/issues/67)
+
 [#66 NPM 悲剧了！](https://github.com/YIXUNFE/blog/issues/66)
 
 [#65 利用 Electron 开发快速截图工具（二）](https://github.com/YIXUNFE/blog/issues/65)
