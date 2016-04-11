@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#70 SEO 优化，旁路服务处理 AJAX 数据](https://github.com/YIXUNFE/blog/issues/70)
+
+[#69 活用 GIT 分支规范发布流程的构想](https://github.com/YIXUNFE/blog/issues/69)
+
 [#68 我眼中的理想发布流程](https://github.com/YIXUNFE/blog/issues/68)
 
 [#67 易迅前端工具盒介绍（一）——构建功能](https://github.com/YIXUNFE/blog/issues/67)
