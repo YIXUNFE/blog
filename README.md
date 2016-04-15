@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#72 【翻译】SystemJS overview，SystemJS 概览](https://github.com/YIXUNFE/blog/issues/72)
+
+[#71 混合应用中的图片优化策略与实施方案](https://github.com/YIXUNFE/blog/issues/71)
+
 [#70 SEO 优化，旁路服务处理 AJAX 数据](https://github.com/YIXUNFE/blog/issues/70)
 
 [#69 活用 GIT 分支规范发布流程的构想](https://github.com/YIXUNFE/blog/issues/69)
