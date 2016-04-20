@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#74 易迅前端工具盒介绍（二）——文件压缩](https://github.com/YIXUNFE/blog/issues/74)
+
+[#73 会翻二叉树，咱就能去谷歌啦?](https://github.com/YIXUNFE/blog/issues/73)
+
 [#72 【翻译】SystemJS overview，SystemJS 概览](https://github.com/YIXUNFE/blog/issues/72)
 
 [#71 混合应用中的图片优化策略与实施方案](https://github.com/YIXUNFE/blog/issues/71)
