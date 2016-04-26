@@ -1,0 +1,212 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>隐写图片</title>
+<style>
+* {margin: 0; padding: 0}
+h2 {font-size: 14px; font-weight: normal; height: 25px; line-height: 25px}
+section {width: 448px; float: left;}
+input {vertical-align: middle; margin: 0}
+p {color: #999; text-align: center}
+canvas {display: block; margin: 5px; border: 1px solid #bbb}
+pre {color: #333; padding: 2px; border-left: 5px solid #bbb}
+</style>
+</head>
+<h1>隐写图片</h1>
+<section>
+<h2>上传图像 <input type="file" id="file" /></h2>
+<canvas id="canvas1" width="400" height="400"></canvas>
+<p>原图</p>
+</section>
+<section>
+<h2>自定义阈值：
+<span>4</span><input id="range" type="range" min="4" max="100" vaule="10" /><span>100</span></h2>
+<canvas id="canvas2" width="400" height="400"></canvas>
+<p>隐写后的图像</p>
+<pre>
+//yu - 阈值
+for (i; i < l; i += 4) {
+  if (
+    Math.abs(simgData[i + 0] - 29) < yu &&
+    Math.abs(simgData[i + 1] - 122) < yu &&
+    Math.abs(simgData[i + 2] - 217) < yu
+  ) {
+    imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10
+  } else if (
+    Math.abs(simgData[i + 0] - 255) < yu &&
+    Math.abs(simgData[i + 1] - 255) < yu &&
+    Math.abs(simgData[i + 2] - 255) < yu
+  ) {
+    imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10 + 1
+  } else if (
+    Math.abs(simgData[i + 0] - 255) < yu &&
+    Math.abs(simgData[i + 1] - 111) < yu &&
+    Math.abs(simgData[i + 2] - 0) < yu
+  ) {
+    imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10 + 2
+  } else {
+    imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10 + 3
+  }
+}
+</pre>
+</section>
+<section>
+<h2>还原</h2>
+<canvas id="canvas3" width="400" height="400"></canvas>
+<p>隐写图片</p>
+<pre>
+for (i; i < l; i += 4) {
+  temp = imgData[i + 0] % 10
+  if (temp === 0) {
+    simgData[i + 0] = 29
+    simgData[i + 1] = 122
+    simgData[i + 2] = 217
+  } else if (temp === 1) {
+    simgData[i + 0] = 255
+    simgData[i + 1] = 255
+    simgData[i + 2] = 255
+  } else if (temp === 2) {
+    simgData[i + 0] = 255
+    simgData[i + 1] = 111
+    simgData[i + 2] = 0
+  } else {
+    simgData[i + 0] = 29
+    simgData[i + 1] = 122
+    simgData[i + 2] = 217
+  }
+  simgData[i + 3] = 255
+}
+</pre>
+</section>
+<script>
+'use strict'
+;(function () {
+  var IMG_URL = 'logo.png',
+    ctx1 = document.getElementById('canvas1').getContext('2d'),
+    ctx2 = document.getElementById('canvas2').getContext('2d'),
+    ctx3 = document.getElementById('canvas3').getContext('2d'),
+    range = document.getElementById('range'),
+    file = document.getElementById('file')
+  
+  var img = new Image()
+  img.onload = ready
+  img.src = IMG_URL
+  
+  //创建一个隐藏的 canvas 用于存放隐写图片
+  var shadowCanvas = document.createElement('canvas'),
+    sctx = shadowCanvas.getContext('2d')
+    
+  sctx.canvas.width = 400
+  sctx.canvas.height = 400
+  
+  function ready () {
+    sctx.drawImage(img, 0, 0, 140, 140, 0, 0, 400, 400)
+    
+    drawOriginImage()
+    
+    range.addEventListener('change', function () {
+      draw(this.value)
+    })
+    
+    file.addEventListener('change', function () {
+      drawOriginImage(this.files[0])
+    })
+  }
+  
+  //绘制原图。。。纯白。。。
+  function drawOriginImage (file) {
+    ctx1.clearRect(0, 0, 400, 400)
+    if (!file) {
+      ctx1.fillStyle = 'rgb(29, 122, 217)'
+      ctx1.rect(0, 0, 400, 400)
+      ctx1.fill()
+      draw(range.value)
+    } else {
+      var fr = new FileReader()
+      fr.onloadend = function (d) {
+        var img = new Image()
+        img.onload = function () {
+          ctx1.drawImage(img, 0, 0, 400, 400)
+          img = null
+          draw(range.value)
+        }
+        img.src = d.target.result
+      }
+      fr.readAsDataURL(file)
+    }    
+  }
+  
+  //提取隐写图片
+  function draw (yu) {
+    ctx2.clearRect(0, 0, 400, 400)
+    ctx3.clearRect(0, 0, 400, 400)
+    
+    //绘制隐写后的图片
+    var simgData = sctx.getImageData(0, 0, 400, 400).data,
+      d = ctx1.getImageData(0, 0, 400, 400),
+      imgData = d.data,
+      i = 0, l = simgData.length,
+      yu = yu || 4
+    for (i; i < l; i += 4) {
+      if (
+        Math.abs(simgData[i + 0] - 29) < yu &&
+        Math.abs(simgData[i + 1] - 122) < yu &&
+        Math.abs(simgData[i + 2] - 217) < yu
+      ) {
+        imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10
+      } else if (
+        Math.abs(simgData[i + 0] - 255) < yu &&
+        Math.abs(simgData[i + 1] - 255) < yu &&
+        Math.abs(simgData[i + 2] - 255) < yu
+      ) {
+        imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10 + 1
+      } else if (
+        Math.abs(simgData[i + 0] - 255) < yu &&
+        Math.abs(simgData[i + 1] - 111) < yu &&
+        Math.abs(simgData[i + 2] - 0) < yu
+      ) {
+        imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10 + 2
+      } else {
+        imgData[i + 0] = (imgData[i + 0] / 10 | 0) * 10 + 3
+      }
+    }
+    
+    ctx2.putImageData(d, 0, 0)
+    
+    d = ctx3.getImageData(0, 0, 400, 400)
+    simgData = d.data
+    imgData = ctx2.getImageData(0, 0, 400, 400).data
+    i = 0
+    l = imgData.length
+    
+    var temp = 0
+    
+    for (i; i < l; i += 4) {
+      temp = imgData[i + 0] % 10
+      if (temp === 0) {
+        simgData[i + 0] = 29
+        simgData[i + 1] = 122
+        simgData[i + 2] = 217
+      } else if (temp === 1) {
+        simgData[i + 0] = 255
+        simgData[i + 1] = 255
+        simgData[i + 2] = 255
+      } else if (temp === 2) {
+        simgData[i + 0] = 255
+        simgData[i + 1] = 111
+        simgData[i + 2] = 0
+      } else {
+        simgData[i + 0] = 29
+        simgData[i + 1] = 122
+        simgData[i + 2] = 217
+      }
+      simgData[i + 3] = 255
+    }
+    
+    ctx3.putImageData(d, 0, 0)
+  }
+  
+}())
+</script>
+</html>
