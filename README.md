@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#75 认识图片隐写](https://github.com/YIXUNFE/blog/issues/75)
+
 [#74 易迅前端工具盒介绍（二）——文件压缩](https://github.com/YIXUNFE/blog/issues/74)
 
 [#73 会翻二叉树，咱就能去谷歌啦?](https://github.com/YIXUNFE/blog/issues/73)
