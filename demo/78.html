@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Z-order positioning</title>
+    <style type="text/css">
+      * {margin: 0; padding: 0}
+      .div {width: 100px; height: 100px; margin-top: -10px}
+      .div1 {background: red}
+      .div2 {background: blue}
+      .div3 {background: green}
+      .div4 {background: yellow; margin-left: -10px; display: inline-block}
+      .div5 {background: pink; position: relative;}
+      .div6 {background: #f30; position: relative; z-index: 1}
+      .div7 {background: #999; position: relative; z-index: 1000000000000000000000000000000000000000000000000}
+      .div8 {background: #3f0;}
+    </style>
+  </head>
+  <body>
+    <div class="div8 div" style="position: relative; z-index: -1"></div>
+    <div class="div7 div"></div>
+    <div class="div6 div"></div>
+    <div class="div5 div"></div>
+    <div class="div4 div"></div>
+    <div class="div3 div" style="float: left"></div>
+    <div class="div2 div"></div>
+    <div class="div1 div" style="position: relative; z-index: -1"></div>
+  </body>
+</html>
