@@ -8,6 +8,10 @@
 
 ## 文章目录：
 
+[#78 学习 z-index](https://github.com/YIXUNFE/blog/issues/78)
+
+[#77 理解 JS 中的函数表达式与函数声明](https://github.com/YIXUNFE/blog/issues/77)
+
 [#76 移动端 H5 页面优化（一）](https://github.com/YIXUNFE/blog/issues/76)
 
 [#75 认识图片隐写](https://github.com/YIXUNFE/blog/issues/75)
