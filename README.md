@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#79 移动端调试工具 Mobile Console 介绍](https://github.com/YIXUNFE/blog/issues/79)
+
 [#78 学习 z-index](https://github.com/YIXUNFE/blog/issues/78)
 
 [#77 理解 JS 中的函数表达式与函数声明](https://github.com/YIXUNFE/blog/issues/77)
