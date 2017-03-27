@@ -8,6 +8,8 @@
 
 ## 文章目录：
 
+[#82 了解 CSS 变量](https://github.com/YIXUNFE/blog/issues/82)
+
 [#81 关于 local webview 应用](https://github.com/YIXUNFE/blog/issues/81)
 
 [#80 使用 Tool Box 进行移动端调试](https://github.com/YIXUNFE/blog/issues/80)
